@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class ChatObject {
     String nombreChat;
-    ArrayList<Mensaje> mensajes;
+    ArrayList<Mensaje> mensajes;  //Esto  es un comentario Edgar
 
     public ChatObject(String nombreChat, ArrayList<Mensaje> mensaje) {
         this.nombreChat = nombreChat;

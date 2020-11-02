@@ -7,6 +7,7 @@ import java.util.Date;
 public class ChatObject {
     String nombreChat;
     ArrayList<Mensaje> mensajes;  //Esto  es un comentario Edgar
+    //Es mi comentario Gerardo
 
     public ChatObject(String nombreChat, ArrayList<Mensaje> mensaje) {
         this.nombreChat = nombreChat;

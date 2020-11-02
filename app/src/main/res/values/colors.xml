@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_unidad_cuajimalpa">#F08200</color>
+    <color name="color_unidad_cuajimalpa_dark">#CD6F00</color>
+    <color name="color_unidad_iztapalapa">#57A519</color>
+    <color name="color_unidad_iztapalapa_dark">#458114</color>
+    <color name="white_transparent">#9AFFFFFF</color>
+    <color name="light_background">#EEEEEE</color>
+    <color name="light_foreground">#FFFFFF</color>
+    <color name="dark_background">#111111</color>
+    <color name="dark_foreground">#000000</color>
+</resources>

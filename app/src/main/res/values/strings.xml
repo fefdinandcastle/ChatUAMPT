@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Chat UAM</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="welcome_login">Inicia sesión para continuar</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="user_hint">Matrícula/No. Económico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="title_activity_hub">Mesas de Trabajo</string>
+    <string name="title_hub">Mesas de trabajo</string>
+    <string name="title_settings">Configuración</string>
+    <string name="card_theme">Tema oscuro</string>
+    <string name="message_hint">Escribir</string>
+    <string name="message_loading">Cargando</string>
+</resources>

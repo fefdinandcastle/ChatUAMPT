@@ -1,0 +1,42 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="CuajimalpaLightNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_unidad_cuajimalpa</item>
+        <item name="colorPrimaryDark">@color/color_unidad_cuajimalpa_dark</item>
+        <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
+        <item name="customBackground">@color/light_background</item>
+        <item name="customForeground">@color/light_foreground</item>
+    </style>
+
+    <style name="CuajimalpaLightActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_unidad_cuajimalpa</item>
+        <item name="colorPrimaryDark">@color/color_unidad_cuajimalpa_dark</item>
+        <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
+        <item name="windowActionBar">true</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="customBackground">@color/light_background</item>
+        <item name="customForeground">@color/light_foreground</item>
+    </style>
+
+    <style name="CuajimalpaDarkNoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_unidad_cuajimalpa</item>
+        <item name="colorPrimaryDark">@color/color_unidad_cuajimalpa_dark</item>
+        <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
+        <item name="customBackground">@color/dark_background</item>
+        <item name="customForeground">@color/dark_foreground</item>
+    </style>
+
+    <style name="CuajimalpaDarkActionBar" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_unidad_cuajimalpa</item>
+        <item name="colorPrimaryDark">@color/color_unidad_cuajimalpa_dark</item>
+        <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
+        <item name="customBackground">@color/dark_background</item>
+        <item name="customForeground">@color/dark_foreground</item>
+    </style>
+
+
+</resources>

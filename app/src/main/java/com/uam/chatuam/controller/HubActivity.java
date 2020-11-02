@@ -34,7 +34,7 @@ public class HubActivity extends AppCompatActivity implements HomeFragment.OnUEA
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        Log.d("UEAEnChats",Utils.usuario.getUeas().get(0).getChats().size()+"");
+        //Log.d("UEAEnChats",Utils.usuario.getUeas().get(0).getChats().size()+"");
     }
 
     public class UEASelectAsync extends AsyncTask<Void,Void,Void> {

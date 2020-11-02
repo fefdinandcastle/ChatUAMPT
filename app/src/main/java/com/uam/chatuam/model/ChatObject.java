@@ -4,11 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Chat {
+public class ChatObject {
     String nombreChat;
     ArrayList<Mensaje> mensajes;
 
-    public Chat(String nombreChat,ArrayList<Mensaje> mensaje) {
+    public ChatObject(String nombreChat, ArrayList<Mensaje> mensaje) {
         this.nombreChat = nombreChat;
         this.mensajes = mensaje;
     }

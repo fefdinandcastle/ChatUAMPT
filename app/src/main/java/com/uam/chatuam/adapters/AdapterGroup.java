@@ -11,18 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uam.chatuam.R;
-import com.uam.chatuam.model.Chat;
-import com.uam.chatuam.model.UEA;
+import com.uam.chatuam.model.ChatObject;
 
 import java.util.ArrayList;
 
 public class AdapterGroup extends RecyclerView.Adapter<AdapterGroup.GroupViewHolder> {
 
-    private ArrayList<Chat> chats;
+    private ArrayList<ChatObject> chats;
     private Context context;
     private OnChatListener mOnGroupListener;
 
-    public AdapterGroup(ArrayList<Chat> chats, OnChatListener onChatListener) {
+    public AdapterGroup(ArrayList<ChatObject> chats, OnChatListener onChatListener) {
         this.chats = chats;
         this.mOnGroupListener = onChatListener;
     }

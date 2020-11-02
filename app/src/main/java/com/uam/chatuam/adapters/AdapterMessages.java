@@ -5,14 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uam.chatuam.R;
 import com.uam.chatuam.Utils;
-import com.uam.chatuam.model.Chat;
 import com.uam.chatuam.model.Mensaje;
 
 import java.util.ArrayList;
@@ -60,7 +58,7 @@ public class AdapterMessages extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         String messageUser = (mensajes.get(position)).getUsuario();
-        if(messageUser.equals(Utils.usuario.getNombre())) {
+        if(messageUser.equals(Utils.usuario.getMatricula())) {
             return Yo;
         }else {
             return Otro;

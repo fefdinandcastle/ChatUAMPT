@@ -7,20 +7,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.uam.chatuam.Connect;
 import com.uam.chatuam.R;
-import com.uam.chatuam.Theme;
 import com.uam.chatuam.Utils;
-import com.uam.chatuam.model.Chat;
-import com.uam.chatuam.model.Mensaje;
+import com.uam.chatuam.model.ChatObject;
 import com.uam.chatuam.model.UEA;
 import com.uam.chatuam.model.Usuario;
 
@@ -124,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(usuario.equals(usernameInput)&&contrasena.equals(passwordInput)){
                         isSuccess=true;
-                        Utils.usuario = new Usuario(nombre,usuario,new ArrayList<UEA>(),tipo);
+                        Utils.usuario = new Usuario(nombre,usuario,new ArrayList<UEA>(),tipo,contrasena);
                         sql="SELECT * FROM inscripciones WHERE matricula = ?;";
                         ps=con.prepareStatement(sql);
                         ps.setString(1,usernameInput);
@@ -132,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         while (resp.next()){
                             String clave = resp.getString("claveGrupo");
                             String profesor = resp.getString("numeroEconomico");
-                            ArrayList<Chat> chats = new ArrayList<Chat>();
+                            ArrayList<ChatObject> chats = new ArrayList<ChatObject>();
                             UEA uea = new UEA(clave,profesor,chats);
                             (Utils.usuario.getUeas()).add(uea);
                         }
@@ -185,9 +180,9 @@ public class MainActivity extends AppCompatActivity {
             if (isSuccess) {
                 if(Utils.usuario.getTipo().equals("PR")){
                     for(int i=0;i<Utils.usuario.getUeas().size();i++){
-                        ArrayList<Chat> chatsActuales = Utils.usuario.getUeas().get(i).getChats();
-                        Collections.sort(chatsActuales.subList(1,chatsActuales.size()), new Comparator<Chat>() {
-                            public int compare(Chat v1, Chat v2) {
+                        ArrayList<ChatObject> chatsActuales = Utils.usuario.getUeas().get(i).getChats();
+                        Collections.sort(chatsActuales.subList(1,chatsActuales.size()), new Comparator<ChatObject>() {
+                            public int compare(ChatObject v1, ChatObject v2) {
                                 return v1.getNombreChat().compareTo(v2.getNombreChat());
                             }
                         });
@@ -209,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
                     ueaActual.addChat("Grupo");
                     ueaActual.addChat("Profesor");
                 }else if(tipoUsuario.equals("PR")){
-                    Log.d("EsProfesor","paso");
                     ueaActual.addChat("Grupo");
                     try{
                         Connection con = connect.getConnection();
@@ -220,10 +214,8 @@ public class MainActivity extends AppCompatActivity {
                             PreparedStatement ps=con.prepareStatement(sql);
                             ps.setString(1,Utils.usuario.getMatricula());
                             ps.setString(2,ueaActual.getClaveGrupo());
-                            Log.d("Consulta",Utils.usuario.getMatricula()+" y "+ueaActual.getClaveGrupo());
                             ResultSet resp = ps.executeQuery();
                             while (resp.next()){
-                                Log.d("prueba","paso");
                                 String matriculaActual = resp.getString("matricula");
                                 ueaActual.addChat(matriculaActual+"");
                             }

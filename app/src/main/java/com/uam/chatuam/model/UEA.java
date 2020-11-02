@@ -8,9 +8,9 @@ public class UEA {
     String nombre;
     String claveGrupo;
     String profesor;
-    ArrayList<Chat> chats;
+    ArrayList<ChatObject> chats;
 
-    public UEA(String claveGrupo, String profesor, ArrayList<Chat> chats) {
+    public UEA(String claveGrupo, String profesor, ArrayList<ChatObject> chats) {
         this.claveGrupo = claveGrupo;
         this.profesor = profesor;
         this.chats = chats;
@@ -24,12 +24,12 @@ public class UEA {
         this.nombre = nombre;
     }
 
-    public ArrayList<Chat> getChats() {
+    public ArrayList<ChatObject> getChats() {
         return chats;
     }
 
     public void addChat(String nombreChat){
-        chats.add(new Chat(nombreChat,new ArrayList<Mensaje>()));
+        chats.add(new ChatObject(nombreChat,new ArrayList<Mensaje>()));
         Log.d("Agregado","Se agrego "+nombreChat+" y el tamano es "+chats.size());
     }
 

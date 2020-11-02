@@ -7,12 +7,14 @@ public class Usuario {
     private String matricula;
     private ArrayList<UEA> ueas;
     private String tipo;
+    private String password;
 
-    public Usuario(String nombre, String matricula, ArrayList<UEA> ueas, String tipo) {
+    public Usuario(String nombre, String matricula, ArrayList<UEA> ueas, String tipo, String password) {
         this.nombre = nombre;
         this.matricula = matricula;
         this.ueas = ueas;
         this.tipo = tipo;
+        this.password = password;
     }
 
     public String getNombre() {
@@ -45,5 +47,9 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

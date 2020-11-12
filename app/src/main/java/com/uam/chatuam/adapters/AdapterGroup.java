@@ -39,12 +39,12 @@ public class AdapterGroup extends RecyclerView.Adapter<AdapterGroup.GroupViewHol
     public void onBindViewHolder(@NonNull final GroupViewHolder usuarioViewHolder, int i) {
         usuarioViewHolder.tvGroup.setText(chats.get(i).getNombreChat());
         final int index = i;
-        usuarioViewHolder.tvGroup.setOnClickListener(new View.OnClickListener() {
+        /*usuarioViewHolder.tvGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"Tocaste "+chats.get(index).getNombreChat(),Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     @Override

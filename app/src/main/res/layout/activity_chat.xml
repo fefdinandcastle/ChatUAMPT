@@ -74,6 +74,7 @@
         android:layout_marginBottom="16dp"
         android:foregroundTint="?colorPrimary"
         android:src="@drawable/ic_add"
+        android:visibility="gone"
         app:backgroundTint="?colorPrimary"
         app:fabSize="normal" />
 

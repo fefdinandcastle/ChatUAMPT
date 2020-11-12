@@ -41,6 +41,8 @@ import org.jivesoftware.smack.chat2.IncomingChatMessageListener;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
+import org.jivesoftware.smackx.mam.MamManager;
+import org.jivesoftware.smackx.mam.element.MamQueryIQ;
 import org.jivesoftware.smackx.muc.MucEnterConfiguration;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.jivesoftware.smackx.muc.MultiUserChatManager;
@@ -111,6 +113,7 @@ public class ChatActivity extends AppCompatActivity {
 
     public void enviarMensaje(View v){
         String messageSend = entradaMensaje.getText().toString();
+        entradaMensaje.setText("");
         if(messageSend.length()>0){
             if(chatIndex>0){
                 if(Utils.usuario.getTipo().equals("AL")){
@@ -321,6 +324,15 @@ public class ChatActivity extends AppCompatActivity {
                         if(!multiUserChat.isJoined()){
                             multiUserChat.join(mucEnterConfiguration);
                         }
+
+
+                        /*
+                        MamManager mm = MamManager.getInstanceFor(mConnection);
+                        if(mm.isSupportedByServer()){
+                            String claveGrupo = Utils.usuario.getUeas().get(ueaIndex).getClaveGrupo().toLowerCase();
+                            MamManager.MamQueryResult mquery = mm.mostRecentPage(mucJid,15);
+                        }*/
+
                         multiUserChat.addMessageListener(new MessageListener() {
                             @Override
                             public void processMessage(Message message) {
@@ -356,4 +368,9 @@ public class ChatActivity extends AppCompatActivity {
         }.start();
     }
 
+    @Override
+    public void onBackPressed() {
+        mConnection.disconnect();
+        super.onBackPressed();
+    }
 }

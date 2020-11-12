@@ -59,7 +59,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_welcome"
-        android:layout_marginTop="25dp">
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp">
 
         <TextView
             android:id="@+id/txt_user"
@@ -93,7 +95,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_user"
-        android:layout_marginTop="25dp">
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp">
 
         <TextView
             android:id="@+id/txt_pass"

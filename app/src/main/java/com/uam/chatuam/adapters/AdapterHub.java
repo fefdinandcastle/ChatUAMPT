@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uam.chatuam.R;
+import com.uam.chatuam.Utils;
 import com.uam.chatuam.model.UEA;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -38,13 +41,19 @@ public class AdapterHub extends RecyclerView.Adapter<AdapterHub.UsuarioViewHolde
     @Override
     public void onBindViewHolder(@NonNull final UsuarioViewHolder usuarioViewHolder, int i) {
         usuarioViewHolder.tvUEA.setText(ueas.get(i).getNombre());
+        if(ueas.get(i).getProfesor().equals(Utils.usuario.getMatricula())){
+            usuarioViewHolder.tvType.setText("PR");
+        }else{
+            usuarioViewHolder.tvType.setText("AL");
+        }
+
         final int index = i;
-        usuarioViewHolder.tvUEA.setOnClickListener(new View.OnClickListener() {
+        /*usuarioViewHolder.tvUEA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"Tocaste "+ueas.get(index).getNombre(),Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     @Override
@@ -55,11 +64,13 @@ public class AdapterHub extends RecyclerView.Adapter<AdapterHub.UsuarioViewHolde
     public class UsuarioViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvUEA;
+        TextView tvType;
         OnGroupListener onGroupListener;
 
         public UsuarioViewHolder(@NonNull View itemView, OnGroupListener onGroupListener) {
             super(itemView);
             tvUEA = itemView.findViewById(R.id.tv_hub);
+            tvType = itemView.findViewById(R.id.tv_userType);
             this.onGroupListener = onGroupListener;
             itemView.setOnClickListener(this);
         }

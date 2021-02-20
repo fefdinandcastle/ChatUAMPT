@@ -12,9 +12,9 @@ import java.util.Properties;
 
 public class Connect {
     private static Connection connection;
-    private static String usuario = "dbmasteruser";
-    private static String password = "chatuam20";
-    private static String host = "ls-36108e309ce802399938b4e5d624eba78274c264.cans7cvrt2zk.us-east-1.rds.amazonaws.com:3306";
+    private static String usuario = "root";
+    private static String password = "ChatUAM2021$";
+    private static String host = "libio.cua.uam.mx:3306";
     private static String database = "uam";
     private static String url="";
 

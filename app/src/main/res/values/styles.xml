@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
         <item name="customBackground">@color/light_background</item>
         <item name="customForeground">@color/light_foreground</item>
+        <item name="android:background">@color/light_background</item>
     </style>
 
     <style name="CuajimalpaLightActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -18,6 +19,7 @@
         <item name="titleTextColor">@android:color/white</item>
         <item name="customBackground">@color/light_background</item>
         <item name="customForeground">@color/light_foreground</item>
+        <item name="android:background">@color/light_background</item>
     </style>
 
     <style name="CuajimalpaDarkNoActionBar" parent="Theme.AppCompat.NoActionBar">
@@ -27,6 +29,7 @@
         <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
         <item name="customBackground">@color/dark_background</item>
         <item name="customForeground">@color/dark_foreground</item>
+        <item name="android:background">@color/dark_background</item>
     </style>
 
     <style name="CuajimalpaDarkActionBar" parent="Theme.AppCompat">
@@ -36,6 +39,7 @@
         <item name="colorAccent">@color/color_unidad_cuajimalpa</item>
         <item name="customBackground">@color/dark_background</item>
         <item name="customForeground">@color/dark_foreground</item>
+        <item name="android:background">@color/dark_background</item>
     </style>
 
 

@@ -25,12 +25,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/selector_btn_login"
+        android:background="@drawable/selector_chat_bottom_bar"
         android:elevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:orientation="horizontal">
 
             <EditText
@@ -56,6 +57,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="enviarMensaje"
                 app:srcCompat="@drawable/ic_send"
                 app:tint="?colorPrimary" />

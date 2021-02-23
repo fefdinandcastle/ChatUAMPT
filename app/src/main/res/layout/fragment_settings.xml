@@ -17,6 +17,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="?customForeground"
         app:cardCornerRadius="75dp">
 
         <TextView
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="25dp"
+            android:background="@android:color/transparent"
             android:text="@string/card_theme"
             android:textColor="?colorPrimary"
             android:textSize="20sp" />

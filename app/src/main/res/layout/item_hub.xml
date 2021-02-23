@@ -8,24 +8,27 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="4dp"
-        card_view:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:cardBackgroundColor="?customForeground"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp"
+        card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
             <ImageView
                 android:id="@+id/ic_book"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_book" />
 
             <TextView
@@ -35,6 +38,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginBottom="15dp"
+                android:background="@android:color/transparent"
                 android:gravity="bottom"
                 android:maxLines="2"
                 android:text="TextView"
@@ -49,9 +53,10 @@
                 android:layout_alignParentBottom="false"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
+                android:background="@android:color/transparent"
                 android:text="PR"
                 android:textAlignment="textEnd"
-                android:textColor="@color/light_background"
+                android:textColor="?customBackground"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

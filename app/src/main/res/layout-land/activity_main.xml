@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="false"
+            android:background="?colorPrimary"
             android:gravity="center_horizontal"
             android:text="@string/welcome"
             android:textColor="@android:color/white"
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_welcome"
             android:layout_centerHorizontal="false"
+            android:background="?colorPrimary"
             android:gravity="center_horizontal"
             android:text="@string/welcome_login"
             android:textColor="@android:color/white"
@@ -62,6 +64,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
+        android:background="?colorPrimary"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -69,7 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@android:color/transparent">
 
             <TextView
                 android:id="@+id/txt_user"
@@ -77,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/input_usr"
                 android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
                 android:text="@string/user"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -103,7 +108,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="?colorPrimary">
 
             <TextView
                 android:id="@+id/txt_pass"
@@ -111,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/input_pass"
                 android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
                 android:text="@string/password"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />

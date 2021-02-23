@@ -35,9 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        verifySharedPreferences();
+        if(!Utils.darkTheme) setTheme(R.style.CuajimalpaLightNoActionBar);
+        else setTheme(R.style.CuajimalpaDarkNoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeViews();
+
         //Utils.configurarTema(this);
         //if(Utils.darkTheme=false) {
         //    Theme.cambiarATema(this,Theme.Cuajimalpa_Light_NoActionBar);
@@ -45,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
         //else if(Utils.darkTheme=true){
         //    Theme.cambiarATema(this,Theme.Cuajimalpa_Dark_NoActionBar);
         //}
+    }
+
+    private void verifySharedPreferences(){
+        SharedPreferences sharedPrefs = getSharedPreferences("chatuam", MODE_PRIVATE);
+        SharedPreferences.Editor ed;
+        if(!sharedPrefs.contains("initialized")){
+            ed = sharedPrefs.edit();
+            ed.putBoolean("initialized", true);
+            ed.putBoolean("theme",false);
+            ed.commit();
+        }
+        Utils.darkTheme=sharedPrefs.getBoolean("theme",false);
     }
 
     private void initializeViews(){

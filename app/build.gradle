@@ -45,5 +45,6 @@ dependencies {
         exclude module: 'smack-omemo'
         exclude module: 'smack-omemo-signal'
     }
+    implementation 'com.github.mac229.FragmentUtils:fragmentutils:1.2.1'
 
 }

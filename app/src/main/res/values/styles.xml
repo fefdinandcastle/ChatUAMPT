@@ -8,6 +8,7 @@
         <item name="customBackground">@color/light_background</item>
         <item name="customForeground">@color/light_foreground</item>
         <item name="android:background">@color/light_background</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="CuajimalpaLightActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -20,6 +21,8 @@
         <item name="customBackground">@color/light_background</item>
         <item name="customForeground">@color/light_foreground</item>
         <item name="android:background">@color/light_background</item>
+        <item name="android:actionBarStyle">@style/ActionBarCuajimalpa</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="CuajimalpaDarkNoActionBar" parent="Theme.AppCompat.NoActionBar">
@@ -30,6 +33,7 @@
         <item name="customBackground">@color/dark_background</item>
         <item name="customForeground">@color/dark_foreground</item>
         <item name="android:background">@color/dark_background</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="CuajimalpaDarkActionBar" parent="Theme.AppCompat">
@@ -40,6 +44,19 @@
         <item name="customBackground">@color/dark_background</item>
         <item name="customForeground">@color/dark_foreground</item>
         <item name="android:background">@color/dark_background</item>
+        <item name="android:actionBarStyle">@style/ActionBarCuajimalpa</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="ActionBarCuajimalpa"
+        parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@color/color_unidad_cuajimalpa</item>
     </style>
 
 

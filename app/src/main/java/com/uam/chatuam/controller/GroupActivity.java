@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.UiAutomation;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,9 +28,11 @@ public class GroupActivity extends AppCompatActivity implements AdapterGroup.OnC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.CuajimalpaLightActionBar);
+        if(!Utils.darkTheme) setTheme(R.style.CuajimalpaLightActionBar);
+        else setTheme(R.style.CuajimalpaDarkActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_unidad_cuajimalpa)));
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();

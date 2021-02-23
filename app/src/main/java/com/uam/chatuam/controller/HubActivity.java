@@ -2,6 +2,7 @@ package com.uam.chatuam.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import com.uam.chatuam.R;
 import com.uam.chatuam.Theme;
 import com.uam.chatuam.Utils;
 import com.uam.chatuam.fragments.HomeFragment;
+import com.uam.chatuam.interfaces.SettingsListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -18,10 +20,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class HubActivity extends AppCompatActivity implements HomeFragment.OnUEASelectedListener {
+public class HubActivity extends AppCompatActivity implements HomeFragment.OnUEASelectedListener, SettingsListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(!Utils.darkTheme) setTheme(R.style.CuajimalpaLightNoActionBar);
+        else setTheme(R.style.CuajimalpaDarkNoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hub);
         //if(Utils.darkTheme=false)
@@ -86,6 +90,17 @@ public class HubActivity extends AppCompatActivity implements HomeFragment.OnUEA
     public void onUEAItemPicked(int position) {
         HubActivity.UEASelectAsync UEAselectasync = new HubActivity.UEASelectAsync(this,position);
         UEAselectasync.execute();
+    }
+
+    @Override
+    public void onThemeChanged(boolean b) {
+        SharedPreferences sharedPrefs = getSharedPreferences("chatuam", MODE_PRIVATE);
+        SharedPreferences.Editor ed;
+        ed = sharedPrefs.edit();
+        ed.putBoolean("theme",b);
+        ed.commit();
+        Utils.darkTheme=sharedPrefs.getBoolean("theme",false);
+        this.recreate();
     }
 
 }

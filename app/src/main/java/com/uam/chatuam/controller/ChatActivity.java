@@ -58,6 +58,7 @@ import org.jivesoftware.smackx.offline.OfflineMessageManager;
 import org.jivesoftware.smackx.push_notifications.PushNotificationsManager;
 import org.jxmpp.jid.DomainBareJid;
 import org.jxmpp.jid.EntityBareJid;
+import org.jxmpp.jid.Jid;
 import org.jxmpp.jid.impl.JidCreate;
 import org.jxmpp.jid.parts.Localpart;
 import org.jxmpp.jid.parts.Resourcepart;
@@ -219,11 +220,28 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 };
                 DomainBareJid serviceName = null;
+                EntityBareJid mucJid = null;
                 try {
                     serviceName = JidCreate.domainBareFrom(Utils.usuario.getMatricula()+"@chatuam");
                 } catch (XmppStringprepException e) {
                     e.printStackTrace();
                 }
+
+                if(Utils.usuario.getTipo().equals("AL")){
+                    try {
+                        mucJid = JidCreate.entityBareFrom(Localpart.from(Utils.usuario.getUeas().get(ueaIndex).getProfesor()+"@chatuam"), serviceName);
+                    } catch (XmppStringprepException e) {
+                        e.printStackTrace();
+                    }
+                }else if(Utils.usuario.getTipo().equals("PR")){
+                    try {
+                        mucJid = JidCreate.entityBareFrom(Localpart.from(Utils.usuario.getUeas().get(ueaIndex).getChats().get(chatIndex).getNombreChat()+"@chatuam"), serviceName);
+                    } catch (XmppStringprepException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
 
                 XMPPTCPConnectionConfiguration config = XMPPTCPConnectionConfiguration.builder()
                         .setUsernameAndPassword(Utils.usuario.getMatricula(),Utils.usuario.getPassword())
@@ -239,6 +257,7 @@ public class ChatActivity extends AppCompatActivity {
                 try {
                     mConnection.connect();
                     mConnection.login();
+                    initMam(mucJid);
                     if(mConnection.isAuthenticated()&&mConnection.isConnected()){
                         //Enviar y recibir mensaje
                         // Assume we've created an XMPPConnection name "connection"._
@@ -312,26 +331,7 @@ public class ChatActivity extends AppCompatActivity {
                         .build();
                 mConnection = new XMPPTCPConnection(config);
 
-                ////////////////////////////
-                /*
-                OfflineMessageManager ofm = new OfflineMessageManager(mConnection);
-                PushNotificationsManager pushNotificationsManager = PushNotificationsManager.getInstanceFor(mConnection);
-                try {
-                    pushNotificationsManager.enable(JidCreate.domainBareFrom(Utils.usuario.getMatricula()+"@chatuam"),"node");
-                } catch (SmackException.NoResponseException e) {
-                    e.printStackTrace();
-                } catch (XMPPException.XMPPErrorException e) {
-                    e.printStackTrace();
-                } catch (SmackException.NotConnectedException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (XmppStringprepException e) {
-                    e.printStackTrace();
-                }
-                */
 
-                ////////////////////////////////
 
                 DomainBareJid xmppServiceGroupDomain = null;
                 EntityBareJid mucJid = null;
@@ -344,12 +344,15 @@ public class ChatActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+
+
                 try {
                     mConnection.connect();
                     mConnection.login();
                     if(mConnection.isAuthenticated()&&mConnection.isConnected()){
                         //Enviar y recibir mensaje
                         // Assume we've created an XMPPConnection name "connection"._
+                        initMam(mucJid);
                         Log.e(TAG,"run: auth done and connected sucessfully");
                         MultiUserChatManager mucChatManager = MultiUserChatManager.getInstanceFor(mConnection);
                         multiUserChat = mucChatManager.getMultiUserChat(mucJid);
@@ -400,35 +403,40 @@ public class ChatActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void initMam(){
-        // check the connection object
-        if (mConnection != null) {
-            //get the instance of MamManager
-            mamManager = MamManager.getInstanceFor(mConnection);
-            //enable it for fetching messages
-            //mamManager.enableMamForAllMessages();
-            Date datex = new Date(1999,1,1);
-            try {
-                MamManager.MamQueryResult mamQuery = mamManager.queryArchiveWithStartDate(datex);
-                if(mamQuery.forwardedMessages.isEmpty()){
-                    Log.d("mam","Está vacio");
-                }else{
-                    for(int i=0;i<mamQuery.forwardedMessages.size();i++){
-                        Log.d("mam",mamQuery.forwardedMessages.get(i).getElementName()+"");
-                    }
+    private void initMam(EntityBareJid j){
+        MamManager manager = MamManager.getInstanceFor(mConnection);
+        MamManager.MamQueryResult r = null;
+        try {
+            r = manager.mostRecentPage(j, 50);
+            if (r.forwardedMessages.size() >= 1) //printing first of them
+            {
+                for(int i=0;i<r.forwardedMessages.size();i++){
+                    Message message = (Message) r.forwardedMessages.get(i).getForwardedStanza();
+                    Log.d("mam", "message received" + message.getBody());
+                    ChatObject mensajes = ((((Utils.usuario.getUeas()).get(ueaIndex)).getChats()).get(chatIndex));
+                    mensajes.agregarMensaje(message.getBody(),message.getFrom().getResourceOrEmpty().toString(),new Date());
+                    //Actualizar la lista
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            rvMessages.setAdapter(mAdapter);
+                        }
+                    });
                 }
-            } catch (SmackException.NoResponseException e) {
-                e.printStackTrace();
-            } catch (XMPPException.XMPPErrorException e) {
-                e.printStackTrace();
-            } catch (SmackException.NotConnectedException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (SmackException.NotLoggedInException e) {
-                e.printStackTrace();
+
             }
+        } catch (XMPPException.XMPPErrorException e) {
+            e.printStackTrace();
+        } catch (SmackException.NotLoggedInException e) {
+            e.printStackTrace();
+        } catch (SmackException.NotConnectedException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (SmackException.NoResponseException e) {
+            e.printStackTrace();
         }
+
     }
 
     private void getObservableMessages() {

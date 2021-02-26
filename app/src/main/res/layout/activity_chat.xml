@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?customBackground"
     tools:context=".controller.ChatActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -31,7 +32,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:orientation="horizontal">
 
             <EditText
@@ -57,7 +57,6 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:onClick="enviarMensaje"
                 app:srcCompat="@drawable/ic_send"
                 app:tint="?colorPrimary" />

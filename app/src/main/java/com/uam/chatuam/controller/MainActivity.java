@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.opengl.Visibility;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.uam.chatuam.Connect;
@@ -28,10 +32,14 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String usr;
+    private String pass;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     EditText etUser;
     EditText etPassword;
+    ImageView btnClearUser;
+    ImageView btnClearPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         verifySharedPreferences();
@@ -40,16 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeViews();
-        //Utils.mostrarNotificacion(this,"Hola","Esto es un mensaje");
 
-
-        //Utils.configurarTema(this);
-        //if(Utils.darkTheme=false) {
-        //    Theme.cambiarATema(this,Theme.Cuajimalpa_Light_NoActionBar);
-        //}
-        //else if(Utils.darkTheme=true){
-        //    Theme.cambiarATema(this,Theme.Cuajimalpa_Dark_NoActionBar);
-        //}
     }
 
     private void verifySharedPreferences(){
@@ -59,14 +58,60 @@ public class MainActivity extends AppCompatActivity {
             ed = sharedPrefs.edit();
             ed.putBoolean("initialized", true);
             ed.putBoolean("theme",false);
+            ed.putString("user",null);
+            ed.putString("pass",null);
             ed.commit();
         }
         Utils.darkTheme=sharedPrefs.getBoolean("theme",false);
+        usr = sharedPrefs.getString("user",null);
+        pass = sharedPrefs.getString("pass",null);
     }
 
     private void initializeViews(){
         etUser = (EditText) findViewById(R.id.input_usr);
         etPassword = (EditText) findViewById(R.id.input_pass);
+        btnClearUser = (ImageView) findViewById(R.id.btn_clr_usr);
+        btnClearPass = (ImageView) findViewById(R.id.btn_clr_pass);
+        if(usr==null&&pass==null){
+            btnClearUser.setVisibility(View.GONE);
+            btnClearPass.setVisibility(View.GONE);
+        }
+        initializeListeners();
+    }
+
+    public void clearUser(View v){
+        etUser.setText("");
+    }
+
+    public void clearPass(View v){
+        etPassword.setText("");
+    }
+
+    public void initializeListeners(){
+        etUser.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(etUser.getText().toString().equals("")){
+                    btnClearUser.setVisibility(View.GONE);
+                }else{
+                    btnClearUser.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        etPassword.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(etPassword.getText().toString().equals("")){
+                    btnClearPass.setVisibility(View.GONE);
+                }else{
+                    btnClearPass.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     public void login(View v){

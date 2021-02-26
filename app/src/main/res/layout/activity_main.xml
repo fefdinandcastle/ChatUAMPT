@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?customBackground"
     tools:context=".controller.MainActivity">
 
 
@@ -36,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="false"
-            android:background="?colorPrimary"
             android:gravity="center_horizontal"
             android:text="@string/welcome"
             android:textColor="@android:color/white"
@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_welcome"
             android:layout_centerHorizontal="false"
-            android:background="?colorPrimary"
             android:gravity="center_horizontal"
             android:text="@string/welcome_login"
             android:textColor="@android:color/white"
@@ -63,8 +62,7 @@
         android:layout_below="@id/layout_welcome"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@android:color/transparent">
+        android:layout_marginRight="25dp">
 
         <TextView
             android:id="@+id/txt_user"
@@ -72,7 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/input_usr"
             android:layout_marginBottom="10dp"
-            android:background="@android:color/transparent"
             android:text="@string/user"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -92,6 +89,22 @@
             android:paddingLeft="10dp"
             android:textColor="@android:color/white"
             android:textColorHint="@color/white_transparent" />
+
+        <ImageView
+            android:id="@+id/btn_clr_usr"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignTop="@id/input_usr"
+            android:layout_alignEnd="@id/input_usr"
+            android:layout_alignBottom="@id/input_usr"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:onClick="clearUser"
+            app:srcCompat="@drawable/ic_clear"
+            app:tint="?colorPrimary" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -101,8 +114,7 @@
         android:layout_below="@id/layout_user"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@android:color/transparent">
+        android:layout_marginRight="25dp">
 
         <TextView
             android:id="@+id/txt_pass"
@@ -110,7 +122,6 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/input_pass"
             android:layout_marginBottom="10dp"
-            android:background="@android:color/transparent"
             android:text="@string/password"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -130,6 +141,22 @@
             android:paddingLeft="10dp"
             android:textColor="@android:color/white"
             android:textColorHint="@color/white_transparent" />
+
+        <ImageView
+            android:id="@+id/btn_clr_pass"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignTop="@id/input_pass"
+            android:layout_alignEnd="@id/input_pass"
+            android:layout_alignBottom="@id/input_pass"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:onClick="clearPass"
+            app:srcCompat="@drawable/ic_clear"
+            app:tint="?colorPrimary" />
 
     </RelativeLayout>
 

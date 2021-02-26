@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?customBackground">
 
     <ImageView
         android:id="@+id/bg_wave_2"
@@ -28,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:background="@android:color/transparent"
             android:text="@string/title_activity_hub"
             android:textColor="@android:color/white"
             android:textSize="22sp" />
@@ -40,7 +40,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_user" />
     </RelativeLayout>
 
@@ -63,7 +62,6 @@
         android:layout_marginEnd="0dp"
         android:background="?customBackground"
         app:menu="@menu/bottom_nav_menu" />
-
 
 
 </RelativeLayout>

@@ -20,15 +20,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/ic_book"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_centerInParent="true"
-                android:background="@android:color/transparent"
                 android:src="@drawable/ic_book" />
 
             <TextView
@@ -38,7 +36,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@android:color/transparent"
                 android:gravity="bottom"
                 android:maxLines="2"
                 android:text="TextView"
@@ -53,7 +50,6 @@
                 android:layout_alignParentBottom="false"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@android:color/transparent"
                 android:text="PR"
                 android:textAlignment="textEnd"
                 android:textColor="?customBackground"

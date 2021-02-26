@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="25dp"
-            android:background="@android:color/transparent"
             android:text="@string/card_theme"
             android:textColor="?colorPrimary"
             android:textSize="20sp" />

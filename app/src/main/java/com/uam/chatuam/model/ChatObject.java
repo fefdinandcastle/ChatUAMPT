@@ -31,6 +31,10 @@ public class ChatObject {
         mensajes.add(0,mensajeTemp);
     }
 
+    public void limpiar(){
+        mensajes.clear();
+    }
+
     public String getFormattedHour(Date date){
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         return formatter.format(date);

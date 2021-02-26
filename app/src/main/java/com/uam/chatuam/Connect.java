@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.StrictMode;
 import android.util.Log;
 
+import org.jivesoftware.smackx.push_notifications.PushNotificationsManager;
+import org.jivesoftware.smackx.push_notifications.element.EnablePushNotificationsIQ;
+
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;

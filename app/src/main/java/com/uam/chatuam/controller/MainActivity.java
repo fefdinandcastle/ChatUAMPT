@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
     EditText etUser;
     EditText etPassword;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         verifySharedPreferences();
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeViews();
+        //Utils.mostrarNotificacion(this,"Hola","Esto es un mensaje");
+
 
         //Utils.configurarTema(this);
         //if(Utils.darkTheme=false) {

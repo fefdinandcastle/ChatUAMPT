@@ -26,18 +26,18 @@ public class ChatObject {
         return mensajes;
     }
 
-    public void agregarMensaje(String mensaje, String usuario, Date date){
-        Mensaje mensajeTemp = new Mensaje(mensaje,usuario,getFormattedHour(date));
-        mensajes.add(0,mensajeTemp);
+    public void agregarMensaje(String mensaje, String usuario, Date date) {
+        Mensaje mensajeTemp = new Mensaje(mensaje, usuario, getFormattedHour(date));
+        mensajes.add(0, mensajeTemp);
     }
 
     public void limpiar(){
         mensajes.clear();
     }
 
-    public String getFormattedHour(Date date){
+    public String getFormattedHour(Date date) {
+
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         return formatter.format(date);
     }
-
 }

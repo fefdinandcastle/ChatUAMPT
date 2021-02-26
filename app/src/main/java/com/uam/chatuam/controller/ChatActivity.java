@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.DatabaseErrorHandler;
 import android.graphics.drawable.ColorDrawable;
@@ -78,6 +79,7 @@ public class ChatActivity extends AppCompatActivity {
     private MultiUserChat multiUserChat=null;
     private MamManager mamManager;
     private Observable disposableMessages=null;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +95,7 @@ public class ChatActivity extends AppCompatActivity {
         chatIndex=intent.getIntExtra("chatIndex",0);
         setTitle((((Utils.usuario.getUeas()).get(ueaIndex).getChats()).get(chatIndex)).getNombreChat());
         entradaMensaje = findViewById(R.id.input_text_message);
-
+        context=this;
         if(chatIndex>0){
             UnicastConexion();
         }else{
@@ -285,6 +287,9 @@ public class ChatActivity extends AppCompatActivity {
                                 ChatObject mensajes = ((((Utils.usuario.getUeas()).get(ueaIndex)).getChats()).get(chatIndex));
                                 //Mensaje data = new Mensaje("Recibido",message.getBody().toString()," ");
                                 mensajes.agregarMensaje(message.getBody().toString(),from.toString(),new Date());
+                                String nombreUEA=Utils.usuario.getUeas().get(ueaIndex).getNombre();
+                                Utils.mostrarNotificacion(context,mensajes.getNombreChat().toString()+" "+nombreUEA,message.getBody().toString());
+
                                 //mMessagesData.add(data);
 
                                 //Actualizar la lista
@@ -397,6 +402,8 @@ public class ChatActivity extends AppCompatActivity {
                                     if(!message.getFrom().getResourceOrEmpty().toString().equals(Utils.usuario.getMatricula())){
                                         ChatObject mensajes = ((((Utils.usuario.getUeas()).get(ueaIndex)).getChats()).get(chatIndex));
                                         mensajes.agregarMensaje(message.getBody(),message.getFrom().getResourceOrEmpty().toString(),new Date());
+                                        String nombreUEA=Utils.usuario.getUeas().get(ueaIndex).getNombre();
+                                        Utils.mostrarNotificacion(context,mensajes.getNombreChat().toString()+" "+nombreUEA,message.getBody().toString());
                                         Log.d("TAG2",message.getFrom().getResourceOrEmpty().toString());
                                         //Actualizar la lista
                                         runOnUiThread(new Runnable() {

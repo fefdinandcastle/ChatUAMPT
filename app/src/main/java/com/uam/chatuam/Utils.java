@@ -63,8 +63,8 @@ public class Utils {
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                //.setSmallIcon(R.drawable.ic_stat_name)
-                //     .setPriority(Notification.PRIORITY_MAX)
+                .setSmallIcon(R.drawable.ic_stat_name)
+                .setPriority(Notification.PRIORITY_MAX)
                 .setContentTitle("Nuevos mensajes en "+chatID)
                 .setContentText(mensaje);
 

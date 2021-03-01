@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.uam.chatuam.R;
@@ -22,23 +23,30 @@ import androidx.navigation.ui.NavigationUI;
 
 public class HubActivity extends AppCompatActivity implements HomeFragment.OnUEASelectedListener, SettingsListener {
 
+    TextView welcomeMsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(!Utils.darkTheme) setTheme(R.style.CuajimalpaLightNoActionBar);
         else setTheme(R.style.CuajimalpaDarkNoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hub);
-        //if(Utils.darkTheme=false)
-        //    Theme.cambiarATema(this,Theme.Cuajimalpa_Light_NoActionBar);
-        //else if(Utils.darkTheme=true){
-        //    Theme.cambiarATema(this,Theme.Cuajimalpa_Dark_NoActionBar);
-        //}
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_hub, R.id.navigation_dashboard).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        initializeViews();
         //Log.d("UEAEnChats",Utils.usuario.getUeas().get(0).getChats().size()+"");
+    }
+
+    public void initializeViews(){
+        welcomeMsg = (TextView) findViewById(R.id.txt_welcome_msg);
+        if(Utils.usuario.getTipo()=="AL"){
+            welcomeMsg.setText(getString(R.string.welcome_msg)+": "+Utils.usuario.getNombre()+"\n"+getString(R.string.user_id_al)+": "+Utils.usuario.getMatricula());
+        }else{
+            welcomeMsg.setText(getString(R.string.welcome_msg)+": "+Utils.usuario.getNombre()+"\n"+getString(R.string.user_id_pr)+": "+Utils.usuario.getMatricula());
+        }
+
     }
 
     public class UEASelectAsync extends AsyncTask<Void,Void,Void> {
@@ -101,6 +109,14 @@ public class HubActivity extends AppCompatActivity implements HomeFragment.OnUEA
         ed.commit();
         Utils.darkTheme=sharedPrefs.getBoolean("theme",false);
         this.recreate();
+    }
+
+    @Override
+    public void logoutRequested() {
+        Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName() );
+        intent .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 }

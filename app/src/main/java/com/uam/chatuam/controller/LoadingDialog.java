@@ -10,6 +10,7 @@ public class LoadingDialog {
     private Activity activity;
     private AlertDialog dialog;
 
+
     LoadingDialog(Activity myActivity){
         activity = myActivity;
     }
@@ -23,9 +24,13 @@ public class LoadingDialog {
 
         dialog = builder.create();
         dialog.show();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
     }
 
     void dismissDialog(){
         dialog.dismiss();
     }
+
+
 }

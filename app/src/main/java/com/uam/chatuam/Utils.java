@@ -14,9 +14,12 @@ import androidx.core.app.NotificationCompat;
 
 import com.uam.chatuam.model.Usuario;
 
+import java.util.ArrayList;
+
 public class Utils {
     public static Usuario usuario;
     public static Boolean darkTheme;
+    public static ArrayList<Usuario> usuarios;
 
     public static void guardarTema(Context context, boolean isChecked){
         SharedPreferences settings = context.getSharedPreferences("theme", 0);
@@ -41,6 +44,19 @@ public class Utils {
             darkTheme = false;
         }
     }
+
+    public static String getUserName(String matricula){
+        String s="";
+        for(int i = 0;i<usuarios.size();i++){
+            if(usuarios.get(i).getMatricula().equals(matricula)){
+                s = usuarios.get(i).getNombre();
+                break;
+            }
+        }
+        return s;
+    }
+
+
     public static void mostrarNotificacion(Context context,String chatID,String mensaje){
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "my_channel_id_01";
@@ -75,4 +91,14 @@ public class Utils {
         notificationBuilder.setContentIntent(pendingIntent);
         notificationManager.notify(1, notificationBuilder.build());
     }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
 }

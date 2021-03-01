@@ -11,6 +11,14 @@
     <string name="title_hub">Mesas de trabajo</string>
     <string name="title_settings">Configuración</string>
     <string name="card_theme">Tema oscuro</string>
+    <string name="card_logout">Cerrar sesión</string>
     <string name="message_hint">Escribir</string>
     <string name="message_loading">Cargando</string>
+    <string name="welcome_msg">Bienvenido</string>
+    <string name="user_id_al">Matrícula</string>
+    <string name="user_id_pr">No.Económico</string>
+    <string name="dialog_save_data_title">Guardar datos</string>
+    <string name="dialog_save_data_msg">¿Desea guardar los datos de inicio sesión?</string>
+    <string name="dialog_no">No</string>
+    <string name="dialog_yes">Si</string>
 </resources>

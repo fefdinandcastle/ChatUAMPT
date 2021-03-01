@@ -3,15 +3,17 @@ package com.uam.chatuam.controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.opengl.Visibility;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private String usr;
     private String pass;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etPassword;
     ImageView btnClearUser;
     ImageView btnClearPass;
+    AlertDialog dialog = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         verifySharedPreferences();
@@ -112,16 +115,77 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        if(usr!=null&&pass!=null){
+            etUser.setText(usr);
+            etPassword.setText(pass);
+        }
     }
 
-    public void login(View v){
-        //startActivity(new Intent(MainActivity.this, HubActivity.class));
-        ArrayList<String> taskParams = new ArrayList<String>();
-        taskParams.add(etUser.getText().toString());
-        taskParams.add(etPassword.getText().toString());
-        LoginAsync loginAsync = new LoginAsync(this);
-        loginAsync.execute(taskParams);
+    public void login(View v) throws InterruptedException {
+        final Activity activity = this;
+        if(usr==null&&pass==null){
+            Button btnYes;
+            Button btnNo;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = getLayoutInflater();
+            builder.setView(inflater.inflate(R.layout.dialog_save_data,null));
+            builder.setCancelable(true);
+            dialog = builder.create();
+            dialog.show();
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            btnYes = (Button) dialog.findViewById(R.id.btn_dialog_data_yes);
+            btnNo = (Button) dialog.findViewById(R.id.btn_dialog_data_no);
+            btnYes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SharedPreferences sharedPrefs = getSharedPreferences("chatuam", MODE_PRIVATE);
+                    SharedPreferences.Editor ed;
+                    ed = sharedPrefs.edit();
+                    ed.putString("user",etUser.getText().toString());
+                    ed.putString("pass",etPassword.getText().toString());
+                    ed.commit();
+                    dialog.dismiss();
+                    ArrayList<String> taskParams = new ArrayList<String>();
+                    taskParams.add(etUser.getText().toString());
+                    taskParams.add(etPassword.getText().toString());
+                    LoginAsync loginAsync = new LoginAsync(activity);
+                    loginAsync.execute(taskParams);
+                }
+            });
+            btnNo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    ArrayList<String> taskParams = new ArrayList<String>();
+                    taskParams.add(etUser.getText().toString());
+                    taskParams.add(etPassword.getText().toString());
+                    LoginAsync loginAsync = new LoginAsync(activity);
+                    loginAsync.execute(taskParams);
+                }
+            });
+        }else if(usr!=etUser.getText().toString()||pass!=etPassword.getText().toString()){
+            SharedPreferences sharedPrefs = getSharedPreferences("chatuam", MODE_PRIVATE);
+            SharedPreferences.Editor ed;
+            ed = sharedPrefs.edit();
+            ed.putString("user",etUser.getText().toString());
+            ed.putString("pass",etPassword.getText().toString());
+            ed.commit();
+            ArrayList<String> taskParams = new ArrayList<String>();
+            taskParams.add(etUser.getText().toString());
+            taskParams.add(etPassword.getText().toString());
+            LoginAsync loginAsync = new LoginAsync(activity);
+            loginAsync.execute(taskParams);
+        }
+        else{
+            ArrayList<String> taskParams = new ArrayList<String>();
+            taskParams.add(etUser.getText().toString());
+            taskParams.add(etPassword.getText().toString());
+            LoginAsync loginAsync = new LoginAsync(activity);
+            loginAsync.execute(taskParams);
+        }
     }
+
+
 
     public class LoginAsync extends AsyncTask<ArrayList<String>,String,String>{
         LoadingDialog dialog;
@@ -204,6 +268,17 @@ public class MainActivity extends AppCompatActivity {
                                 Utils.usuario.getUeas().get(i).setNombre(nombre);
                             }
                         }
+                    }
+                    Utils.usuarios = new ArrayList<Usuario>();
+                    sql="SELECT * FROM usuarios;";
+                    ps=con.prepareStatement(sql);
+                    resp = ps.executeQuery();
+                    while (resp.next()){
+                        usuario = resp.getString("matricula");
+                        nombre = resp.getString("nombre");
+                        tipo = resp.getString("tipo");
+                        Utils.usuarios.add(new Usuario(nombre,usuario,null,tipo,null));
+                        Log.d("ReadUser",tipo);
                     }
                 }
                 con.close();
@@ -294,5 +369,7 @@ public class MainActivity extends AppCompatActivity {
             return z;
         }
     }
+
+
 
 }

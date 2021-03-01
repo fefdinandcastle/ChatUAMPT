@@ -10,7 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mysql.jdbc.StringUtils;
 import com.uam.chatuam.R;
+import com.uam.chatuam.Utils;
 import com.uam.chatuam.model.ChatObject;
 
 import java.util.ArrayList;
@@ -38,6 +40,13 @@ public class AdapterGroup extends RecyclerView.Adapter<AdapterGroup.GroupViewHol
     @Override
     public void onBindViewHolder(@NonNull final GroupViewHolder usuarioViewHolder, int i) {
         usuarioViewHolder.tvGroup.setText(chats.get(i).getNombreChat());
+        if(Utils.isNumeric(chats.get(i).getNombreChat())){
+            usuarioViewHolder.tvName.setText(Utils.getUserName(chats.get(i).getNombreChat()));
+        }else{
+            usuarioViewHolder.tvName.setVisibility(View.GONE);
+        }
+
+
         final int index = i;
         /*usuarioViewHolder.tvGroup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +64,13 @@ public class AdapterGroup extends RecyclerView.Adapter<AdapterGroup.GroupViewHol
     public class GroupViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvGroup;
+        TextView tvName;
         OnChatListener onChatListener;
 
         public GroupViewHolder(@NonNull View itemView, OnChatListener onChatListener) {
             super(itemView);
             tvGroup = itemView.findViewById(R.id.tv_group);
+            tvName = itemView.findViewById(R.id.tv_groupName);
             this.onChatListener = onChatListener;
             itemView.setOnClickListener(this);
         }

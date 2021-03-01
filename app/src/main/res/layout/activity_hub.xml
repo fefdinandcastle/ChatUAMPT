@@ -10,6 +10,7 @@
         android:id="@+id/bg_wave_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:tint="?customForeground"
         android:scaleType="fitXY"
         android:scaleX="6.0"
         android:scrollX="-10dp"
@@ -19,19 +20,38 @@
     <RelativeLayout
         android:id="@+id/layout_custom_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="?colorPrimary">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:text="@string/title_activity_hub"
-            android:textColor="@android:color/white"
-            android:textSize="22sp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toLeftOf="@id/imageView"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_hub"
+                android:textColor="@android:color/white"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/txt_welcome_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView"

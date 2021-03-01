@@ -43,7 +43,8 @@ public class AdapterGroup extends RecyclerView.Adapter<AdapterGroup.GroupViewHol
         if(Utils.isNumeric(chats.get(i).getNombreChat())){
             usuarioViewHolder.tvName.setText(Utils.getUserName(chats.get(i).getNombreChat()));
         }else{
-            usuarioViewHolder.tvName.setVisibility(View.GONE);
+            //usuarioViewHolder.tvName.setVisibility(View.GONE);
+            usuarioViewHolder.tvName.setText(Utils.usuario.getUeas().get(Utils.ueaIndex).getClaveGrupo());
         }
 
 

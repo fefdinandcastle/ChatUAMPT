@@ -9,11 +9,21 @@ public class UEA {
     String claveGrupo;
     String profesor;
     ArrayList<ChatObject> chats;
+    ArrayList<String> inscritos;
 
     public UEA(String claveGrupo, String profesor, ArrayList<ChatObject> chats) {
         this.claveGrupo = claveGrupo;
         this.profesor = profesor;
         this.chats = chats;
+        inscritos=new ArrayList<String>();
+    }
+
+    public void addAlumno(String s){
+        inscritos.add(s);
+    }
+
+    public ArrayList<String> getInscritos() {
+        return inscritos;
     }
 
     public String getNombre() {

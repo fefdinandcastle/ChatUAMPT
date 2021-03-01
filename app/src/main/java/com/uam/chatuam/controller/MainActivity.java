@@ -356,6 +356,14 @@ public class MainActivity extends AppCompatActivity{
                                 String matriculaActual = resp.getString("matricula");
                                 ueaActual.addChat(matriculaActual+"");
                             }
+                            sql="SELECT matricula FROM inscripciones WHERE claveGrupo = ?;";
+                            ps=con.prepareStatement(sql);
+                            ps.setString(1,ueaActual.getClaveGrupo());
+                            resp = ps.executeQuery();
+                            while (resp.next()){
+                                String matriculaActual = resp.getString("matricula");
+                                ueaActual.addAlumno(matriculaActual);
+                            }
                         }
                     }catch (Exception ex) {
                         isSuccess = false;

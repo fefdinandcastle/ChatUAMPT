@@ -20,6 +20,8 @@ public class Utils {
     public static Usuario usuario;
     public static Boolean darkTheme;
     public static ArrayList<Usuario> usuarios;
+    public static int ueaIndex=0;
+    public static int chatIndex=0;
 
     public static void guardarTema(Context context, boolean isChecked){
         SharedPreferences settings = context.getSharedPreferences("theme", 0);
@@ -54,6 +56,17 @@ public class Utils {
             }
         }
         return s;
+    }
+
+    public static int getUEAindex(String s){
+        int ret = 0;
+        for(int i=0;i<Utils.usuario.getUeas().size();i++){
+            if(s.equals(Utils.usuario.getUeas().get(i).getClaveGrupo())){
+                ret = 0;
+                break;
+            }
+        }
+        return ret;
     }
 
 

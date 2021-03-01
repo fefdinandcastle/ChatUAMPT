@@ -47,11 +47,13 @@ public class AdapterMessages extends RecyclerView.Adapter {
     private void configureViewHolder1(MessageMeViewHolder vh1, int position) {
         vh1.tvMessage.setText((mensajes.get(position)).getMensaje());
         vh1.tvHour.setText((mensajes.get(position)).getTiempo());
+        vh1.tvUserMessage.setText("Yo");
     }
 
     private void configureViewHolder2(MessageOtherViewHolder vh2,int position) {
         vh2.tvMessage.setText((mensajes.get(position)).getMensaje());
         vh2.tvHour.setText((mensajes.get(position)).getTiempo());
+        vh2.tvUserMessage.setText(Utils.getUserName(mensajes.get(position).getUsuario()));
     }
 
 
@@ -84,24 +86,28 @@ public class AdapterMessages extends RecyclerView.Adapter {
     public class MessageMeViewHolder extends RecyclerView.ViewHolder  {
 
         TextView tvMessage;
+        TextView tvUserMessage;
         TextView tvHour;
 
         public MessageMeViewHolder(@NonNull View itemView) {
             super(itemView);
             tvMessage = itemView.findViewById(R.id.tv_message);
             tvHour = itemView.findViewById(R.id.tv_hour);
+            tvUserMessage = itemView.findViewById(R.id.tv_usr_msg);
         }
     }
 
     public class MessageOtherViewHolder extends RecyclerView.ViewHolder  {
 
         TextView tvMessage;
+        TextView tvUserMessage;
         TextView tvHour;
 
         public MessageOtherViewHolder(@NonNull View itemView) {
             super(itemView);
             tvMessage = itemView.findViewById(R.id.tv_message);
             tvHour = itemView.findViewById(R.id.tv_hour);
+            tvUserMessage = itemView.findViewById(R.id.tv_usr_msg);
         }
     }
 

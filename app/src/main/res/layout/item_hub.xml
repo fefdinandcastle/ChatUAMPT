@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         card_view:cardBackgroundColor="?customForeground"
-        card_view:cardCornerRadius="4dp"
+        card_view:cardCornerRadius="10dp"
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
 
@@ -24,9 +24,13 @@
 
             <ImageView
                 android:id="@+id/ic_book"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tv_hub"
+                android:layout_below="@id/tv_userType"
                 android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="false"
                 android:src="@drawable/ic_book" />
 
             <TextView

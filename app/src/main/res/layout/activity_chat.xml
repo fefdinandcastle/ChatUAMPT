@@ -13,9 +13,32 @@
         android:layout_height="match_parent"
         android:layout_above="@id/input_message_layout"
         android:padding="3dp"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:visibility="visible">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/viewNone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                app:srcCompat="@drawable/ic_sad"
+                app:tint="?customForeground" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/input_message_layout"

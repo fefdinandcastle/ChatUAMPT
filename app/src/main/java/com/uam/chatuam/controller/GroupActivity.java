@@ -21,7 +21,6 @@ import com.uam.chatuam.adapters.AdapterHub;
 
 public class GroupActivity extends AppCompatActivity implements AdapterGroup.OnChatListener {
 
-    int ueaIndex;
     private RecyclerView rvChats;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLmanager;
@@ -36,16 +35,16 @@ public class GroupActivity extends AppCompatActivity implements AdapterGroup.OnC
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        ueaIndex=intent.getIntExtra("index",0);
-        setTitle((Utils.usuario.getUeas()).get(ueaIndex).getNombre());
+        Utils.ueaIndex=intent.getIntExtra("index",0);
+        setTitle((Utils.usuario.getUeas()).get(Utils.ueaIndex).getNombre());
 
         rvChats = findViewById(R.id.rvGroups);
         rvChats.setHasFixedSize(true);
         mLmanager = new LinearLayoutManager(this);
         rvChats.setLayoutManager(mLmanager);
-        mAdapter = new AdapterGroup(((Utils.usuario.getUeas()).get(ueaIndex)).getChats(),this);
+        mAdapter = new AdapterGroup(((Utils.usuario.getUeas()).get(Utils.ueaIndex)).getChats(),this);
         rvChats.setAdapter(mAdapter);
-        Log.d("HOLA",Utils.usuario.getUeas().get(ueaIndex).getChats().size()+"");
+        Log.d("HOLA",Utils.usuario.getUeas().get(Utils.ueaIndex).getChats().size()+"");
     }
 
     @Override
@@ -90,7 +89,7 @@ public class GroupActivity extends AppCompatActivity implements AdapterGroup.OnC
             super.onPostExecute(aVoid);
             dialog.dismissDialog();
             Intent intent = new Intent(GroupActivity.this, ChatActivity.class);
-            intent.putExtra("ueaIndex",ueaIndex);
+            intent.putExtra("ueaIndex",Utils.ueaIndex);
             intent.putExtra("chatIndex",position);
             startActivity(intent);
         }
